@@ -29,23 +29,23 @@ async def cmd_start(message: Message):
                          reply_markup=kb.main)
 
 
-@user.message(F.text == '💬 Текст')
+@user.message(F.text == '💬 Text')
 async def kb_chatgpt(message: Message, state: FSMContext):
     await state.set_state(Chatting.question)
     await message.answer(f'To start a dialogue, send a text or picture to the chat ⬇️')
 
 
-@user.message(F.text == '🌠 Генерация картинок')
+@user.message(F.text == '🌠 Image')
 async def kb_image(message: Message):
     await message.answer('This feature is under development.')
 
 
-@user.message(F.text == '🎙 Голос')
+@user.message(F.text == '🎙 Voice')
 async def kb_voice(message: Message):
     await message.answer('This feature is under development.')
 
 
-@user.message(F.text == '⚙️ Мой профиль')
+@user.message(F.text == '⚙️ Profile')
 async def kb_profile(message: Message):
     user_info = await rq.get_user(tg_id=message.from_user.id)
     await message.answer(f'ID: {user_info.id}\nBalance: {user_info.balance}$')
